@@ -1,0 +1,2 @@
+# trdl
+TradeRepublic Portfolio Downloader

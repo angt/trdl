@@ -72,14 +72,12 @@ def export_portfolio(data, output_file):
         c.get("positions", []) for c in data.get("categories", [])
         if c.get("categoryType") == "stocksAndETFs"
     ), [])
-    stocks = [
-        {"isin": p.get("isin"), "averageBuyIn": p.get("averageBuyIn"), "netSize": p.get("netSize")}
-        for p in positions
-    ]
+    fields = ["name", "isin", "averageBuyIn", "netSize"]
+    print(positions)
     with open(output_file, "w", newline="") as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=["isin", "averageBuyIn", "netSize"])
+        writer = csv.DictWriter(csvfile, fieldnames=fields)
         writer.writeheader()
-        writer.writerows(stocks)
+        writer.writerows({k: p.get(k) for k in fields} for p in positions)
     return False
 
 def main():

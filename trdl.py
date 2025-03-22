@@ -73,7 +73,6 @@ def export_portfolio(data, output_file):
         if c.get("categoryType") == "stocksAndETFs"
     ), [])
     fields = ["name", "isin", "averageBuyIn", "netSize"]
-    print(positions)
     with open(output_file, "w", newline="") as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fields)
         writer.writeheader()
